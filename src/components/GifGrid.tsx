@@ -1,27 +1,31 @@
 import { useEffect, useState } from "react";
 import { getGifs } from "../helpers/getGif";
+import { GifItem } from "./GifItem";
+import { useFetchGifs } from "../hooks/useFetchGifs";
 
-export const GifGrid = (prop: any) => {
+export const GifGrid = (props: any) => {
+  const { images, isLoading } = useFetchGifs(props.title);
+  console.log(images);
   // const [gifs, setGifs] = useState([]);
 
+  // const getImages = async () => {
+  //   const res = await getGifs(prop.title);
+  //   setGifs(res);
+  // };
   // useEffect(() => {
-  //   const resultados = await getGifs(prop.title);
-
+  //   getImages();
   // }, []);
 
   return (
-    <div>
-      <h3>
-        {prop.title}
-        {/* {gifs.map((gif: any) => {
-          return (
-            <div key={gif.id}>
-              <img src={gif.images.fixed_height.url} alt="" />
-            </div>
-          );
-        })} */}
-      </h3>
-      <p>hola mundo</p>
-    </div>
+    <>
+      <div className="div-titulo">
+        <h3>{props.title}</h3>
+      </div>
+      <div className="card-grid">
+        {images.map((img: any) => {
+          return <GifItem key={img.id} {...img} />;
+        })}
+      </div>
+    </>
   );
 };

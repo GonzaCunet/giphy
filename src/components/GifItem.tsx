@@ -1,4 +1,9 @@
-export const GifItem = ({ title, url }: any) => {
+// import PropTypes from "prop-types";
+interface GifItemProps {
+  title: string;
+  url: string;
+}
+export const GifItem = ({ title, url }: GifItemProps) => {
   return (
     <div className="card">
       <img src={url} alt="" />
@@ -6,3 +11,8 @@ export const GifItem = ({ title, url }: any) => {
     </div>
   );
 };
+
+// GifItem.propTypes = {
+//   title: PropTypes.string.isRequired,
+//   url: PropTypes.string.isRequired,
+// };
